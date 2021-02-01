@@ -233,10 +233,21 @@ components:
             type: "object"
             uniqueItems: true
             required:
+              - "_responseSize"
+              - "_flagMoreRecords"
               - "transaction"
               - "office"
               - "customer"
             properties:
+              _responseSize:
+                type: "number"
+                maxLength: 2
+                description: "Total de registros"
+                example: "276"
+              _flagMoreRecords:
+                type: "boolean"
+                description: "Indica si existen mas registros en la solicitud"
+                example: false
               transaction:
                 type: "array"
                 items:
@@ -289,6 +300,7 @@ components:
               - "account"
             properties:
               account:
+                type: "object"
                 $ref:  "#/components/schemas/accountBalance"
         status:
           type: "object"
@@ -344,20 +356,8 @@ components:
     accountBalance:
       type: "object"
       required:
-        - "type"
-        - "number"
         - "balances"
       properties:
-        type:
-          type: "string"
-          maxLength: 50
-          description: "Tipo de cuenta"
-          example: "CUENTA_DE_AHORRO"
-        number:
-          type: "string"
-          maxLength: 16
-          description: "Tipo de cuenta"
-          example: "40678098765"
         balances:
           type: "object"
           $ref:  "#/components/schemas/balances"
@@ -370,10 +370,10 @@ components:
         - "overdraftValue"
         - "availableOverdraftQuota"
         - "cash"
-        - "unavailable clearing"
+        - "unavailableClearing"
         - "receivable"
         - "blocked"
-        - "unavailableStartDay clearingStartDay"
+        - "unavailableStartDayClearingStartDay"
         - "cashStartDay"
         - "pockets"
         - "remittanceQuota"
@@ -407,7 +407,7 @@ components:
           maxLength: 16
           description: "Saldo en efectivo."
           example: "25,000,000.0000"
-        unavailable clearing:
+        unavailableClearing:
           type: "number"
           maxLength: 16
           description: "Saldo en canje."
@@ -422,7 +422,7 @@ components:
           maxLength: 16
           description: "Saldo bloqueado."
           example: "0.0000"
-        unavailableStartDay clearingStartDay:
+        unavailableStartDayClearingStartDay:
           type: "number"
           maxLength: 16
           description: "Saldo en canje al inicio del día."

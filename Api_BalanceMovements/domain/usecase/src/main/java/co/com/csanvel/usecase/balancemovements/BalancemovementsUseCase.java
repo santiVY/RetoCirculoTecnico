@@ -58,7 +58,7 @@ public class BalancemovementsUseCase {
                     rsData.add(RsData.builder()
                             .responseSize(response.getT2().getData().get(0).getResponseSize())
                             .flagMoreRecords(response.getT2().getData().get(0).getFlagMoreRecords())
-                            .account(response.getT1().getData().get(0).getAccount())
+                            .account(rqData.getAccount())
                             .balance(response.getT1().getData().get(0).getAccount().getBalances())
                             .transaction(response.getT2().getData().get(0).getTransaction())
                             .office(response.getT2().getData().get(0).getOffice())

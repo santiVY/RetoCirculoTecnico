@@ -1,6 +1,6 @@
 package co.com.csanvel.model.balancemovements;
 
-import co.com.csanvel.model.balance.RsAccount;
+import co.com.csanvel.model.balance.RqAccount;
 import co.com.csanvel.model.balance.RsBalances;
 import co.com.csanvel.model.transaction.RqOffice;
 import co.com.csanvel.model.transaction.RsCustomer;
@@ -25,7 +25,7 @@ public class RsData {
     @JsonProperty("_flagMoreRecords")
     private Boolean flagMoreRecords;
 
-    private RsAccount account;
+    private RqAccount account;
     private RsBalances balance;
     private List<RsTransactionBody> transaction;
     private RqOffice office;

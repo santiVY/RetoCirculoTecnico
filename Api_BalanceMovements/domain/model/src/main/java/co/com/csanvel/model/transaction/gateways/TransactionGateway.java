@@ -4,6 +4,6 @@ import co.com.csanvel.model.transaction.RqTransaction;
 import co.com.csanvel.model.transaction.RsTransaction;
 import reactor.core.publisher.Mono;
 
-public interface TransactionRepository {
+public interface TransactionGateway {
     Mono<RsTransaction> getTransaction(RqTransaction rqTransaction);
 }

@@ -5,10 +5,7 @@ import co.com.csanvel.model.balance.RqBalance;
 import co.com.csanvel.model.balance.RqDataBalance;
 import co.com.csanvel.model.balance.RsBalance;
 import co.com.csanvel.model.balance.gateways.BalanceGateway;
-import co.com.csanvel.model.balancemovements.RqBalanceMovements;
-import co.com.csanvel.model.balancemovements.RqData;
-import co.com.csanvel.model.balancemovements.RsBalanceMovements;
-import co.com.csanvel.model.balancemovements.RsData;
+import co.com.csanvel.model.balancemovements.*;
 import co.com.csanvel.model.transaction.RqDataTransaction;
 import co.com.csanvel.model.transaction.RqTransaction;
 import co.com.csanvel.model.transaction.RsTransaction;
@@ -71,6 +68,12 @@ public class BalancemovementsUseCase {
 
                     RsBalanceMovements rsBalanceMovements = RsBalanceMovements.builder()
                             .data(rsData)
+                            .status(RsStatus.builder()
+                                    .code("000")
+                                    .title("TRANSACCION EXITOSA")
+                                    .detail("TRANSACCION EXITOSA")
+                                    .severity("INFO")
+                                    .build())
                             .build();
 
                     return Mono.just(rsBalanceMovements);

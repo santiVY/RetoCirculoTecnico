@@ -38,9 +38,11 @@ public class HeaderBM {
     @HeaderName(Constant.IP)
     public String ip;
 
+    @NotBlank(message = Constant.MESSAGE_CLIENT_ID_NOT_BLANK)
     @HeaderName(Constant.CLIENT_ID)
     public String clientId;
 
+    @NotBlank(message = Constant.MESSAGE_CLIENT_TYPE_NOT_BLANK)
     @HeaderName(Constant.CLIENT_TYPE)
     public String clientType;
 

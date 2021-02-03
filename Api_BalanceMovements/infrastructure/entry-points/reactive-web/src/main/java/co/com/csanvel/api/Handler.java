@@ -4,11 +4,11 @@ import co.com.csanvel.model.balancemovements.RqBalanceMovements;
 import co.com.csanvel.model.balancemovements.RsBalanceMovements;
 import co.com.csanvel.usecase.balancemovements.BalancemovementsUseCase;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
+import co.com.csanvel.model.commons.HeaderBM;
 
 @Component
 @RequiredArgsConstructor
@@ -16,7 +16,6 @@ public class Handler {
     private final BalancemovementsUseCase balancemovementsUseCase;
 
     public Mono<ServerResponse> getBalanceMovements(ServerRequest serverRequest) {
-
         Mono<RqBalanceMovements> rqBalanceMovements = serverRequest.bodyToMono(RqBalanceMovements.class);
         Mono<RsBalanceMovements> response = rqBalanceMovements.flatMap(body -> balancemovementsUseCase.getBalanceMovements(body));
 

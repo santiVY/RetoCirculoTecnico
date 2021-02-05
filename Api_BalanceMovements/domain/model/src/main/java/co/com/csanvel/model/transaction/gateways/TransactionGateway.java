@@ -6,4 +6,5 @@ import reactor.core.publisher.Mono;
 
 public interface TransactionGateway {
     Mono<RsTransaction> getTransaction(RqTransaction rqTransaction);
+    Mono<RsTransaction> getTransactionMoreMovements(RqTransaction rqTransaction);
 }

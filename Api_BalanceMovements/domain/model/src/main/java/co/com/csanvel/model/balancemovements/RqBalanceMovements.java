@@ -12,5 +12,4 @@ import java.util.List;
 @NoArgsConstructor
 public class RqBalanceMovements {
     private List<RqData> data;
-    private RsStatus status;
 }

@@ -3,6 +3,7 @@ package co.com.csanvel.restproduct;
 import co.com.csanvel.model.balance.RqBalance;
 import co.com.csanvel.model.balance.RsBalance;
 import co.com.csanvel.model.balance.gateways.BalanceGateway;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -10,6 +11,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 @Component
+@Setter
 public class RestConsumerBalance implements BalanceGateway {
 
     @Value("${balance.url}")

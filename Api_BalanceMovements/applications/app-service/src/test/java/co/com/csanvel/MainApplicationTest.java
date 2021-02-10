@@ -2,11 +2,17 @@ package co.com.csanvel;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.boot.SpringApplication;
 
 public class MainApplicationTest {
 
     @Test
     public void main() {
+        MainApplication.main(new String[]{});
+    }
+
+    @Test
+    public void mainNull() {
         try {
             MainApplication.main(null);
         }catch (Exception e){

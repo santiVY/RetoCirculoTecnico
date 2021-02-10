@@ -10,11 +10,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
@@ -25,21 +22,15 @@ import java.util.List;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Router.class,  webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@EnableAutoConfiguration
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class RouterTest {
 
     @Autowired
-    WebTestClient webTestClient;
+    private WebTestClient webTestClient;
 
     @MockBean
     BalancemovementsUseCase balancemovementsUseCase;
 
-    @MockBean
-    HeaderFilter headerFilter;
-
-    @MockBean
-    Handler handler;
 
     static final String BALANCEMOVEMENTS = "/balance/movements";
 
@@ -148,14 +139,13 @@ public class RouterTest {
     }
 
     @Before
-    public void init(){
+    public void setUp(){
         webTestClient = webTestClient.mutate().responseTimeout(Duration.ofMillis(300000)).build();
         Mockito.when(balancemovementsUseCase.getBalanceMovements(getRequestBalanceMovements())).thenReturn(Mono.just(getResponseBalanceMovements()));
     }
 
     @Test
     public void routerFunction() {
-
         webTestClient
                 .post()
                 .uri(BALANCEMOVEMENTS)
@@ -169,6 +159,17 @@ public class RouterTest {
                 .header(CLIENTTYPE, VALUE_CLIENTTYPE)
                 .exchange()
                 .expectStatus()
-                .is5xxServerError();
+                .isOk();
+    }
+
+    @Test
+    public void routerFunctionNotHeader() {
+        webTestClient
+                .post()
+                .uri(BALANCEMOVEMENTS)
+                .body(Mono.just(getRequestBalanceMovements()), RqBalanceMovements.class)
+                .exchange()
+                .expectStatus()
+                .is4xxClientError();
     }
 }

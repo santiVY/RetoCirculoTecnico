@@ -35,36 +35,36 @@ public class BalancemovementsUseCaseTest {
     @Mock
     TransactionGateway transactionGateway;
 
-    private RqBalanceMovements getRequestBalanceMovement(int key){
+    private RqBalanceMovements getRequestBalanceMovement(int key) {
         return RqBalanceMovements.builder()
                 .data(List.of(RqData.builder()
-                    .account(RqAccount.builder()
-                            .number("45387654763")
-                            .type("CUENTA_AHORROS")
-                            .build())
-                    .transaction(RqTransactionBody.builder()
-                            .startDate("2020-01-01")
-                            .endDate("2020-01-30")
-                            .minAmount(2)
-                            .maxAmount(4)
-                            .type("DEBITO")
-                            .checkNumber("")
-                            .group("")
-                            .description("")
-                            .build())
-                    .pagination(RqPagination.builder()
-                            .key(key)
-                            .size(30)
-                            .build())
-                    .office(RqOffice.builder()
-                            .name("2005678")
-                            .code("2005678")
-                            .build())
-                    .build()))
+                        .account(RqAccount.builder()
+                                .number("45387654763")
+                                .type("CUENTA_AHORROS")
+                                .build())
+                        .transaction(RqTransactionBody.builder()
+                                .startDate("2020-01-01")
+                                .endDate("2020-01-30")
+                                .minAmount(2)
+                                .maxAmount(4)
+                                .type("DEBITO")
+                                .checkNumber("")
+                                .group("")
+                                .description("")
+                                .build())
+                        .pagination(RqPagination.builder()
+                                .key(key)
+                                .size(30)
+                                .build())
+                        .office(RqOffice.builder()
+                                .name("2005678")
+                                .code("2005678")
+                                .build())
+                        .build()))
                 .build();
     }
 
-    private RqBalance getRequestBalance(){
+    private RqBalance getRequestBalance() {
         return RqBalance.builder()
                 .data(List.of(RqDataBalance.builder()
                         .account(RqAccount.builder()
@@ -75,7 +75,7 @@ public class BalancemovementsUseCaseTest {
                 .build();
     }
 
-    private RqTransaction getRequestTransaction(){
+    private RqTransaction getRequestTransaction(int key) {
         return RqTransaction.builder()
                 .data(List.of(RqDataTransaction.builder()
                         .account(RqAccount.builder()
@@ -93,7 +93,7 @@ public class BalancemovementsUseCaseTest {
                                 .description("")
                                 .build())
                         .pagination(RqPagination.builder()
-                                .key(1)
+                                .key(key)
                                 .size(30)
                                 .build())
                         .office(RqOffice.builder()
@@ -104,34 +104,34 @@ public class BalancemovementsUseCaseTest {
                 .build();
     }
 
-    private RsBalance getResponsebalance(){
+    private RsBalance getResponsebalance() {
         return RsBalance.builder().data(List.of(
-                    RsDataBalance.builder().account(
-                            RsAccount.builder().balances(
-                                    RsBalances.builder()
-                                            .available(new BigDecimal(1))
-                                            .availableOverdraftBalance(new BigDecimal(1))
-                                            .overdraftValue(new BigDecimal(1))
-                                            .availableOverdraftQuota(new BigDecimal(1))
-                                            .cash(new BigDecimal(1))
-                                            .unavailableClearing(new BigDecimal(1))
-                                            .receivable(new BigDecimal(1))
-                                            .blocked(new BigDecimal(1))
-                                            .unavailableStartDayClearingStartDay(new BigDecimal(1))
-                                            .cashStartDay(new BigDecimal(1))
-                                            .pockets(new BigDecimal(1))
-                                            .remittanceQuota(new BigDecimal(1))
-                                            .agreedRemittanceQuota(new BigDecimal(1))
-                                            .remittanceQuotaUsage(new BigDecimal(1))
-                                            .normalInterest(new BigDecimal(1))
-                                            .suspensionInterest(new BigDecimal(1))
-                                            .build()).
-                                    build()).
-                            build())).
+                RsDataBalance.builder().account(
+                        RsAccount.builder().balances(
+                                RsBalances.builder()
+                                        .available(new BigDecimal(1))
+                                        .availableOverdraftBalance(new BigDecimal(1))
+                                        .overdraftValue(new BigDecimal(1))
+                                        .availableOverdraftQuota(new BigDecimal(1))
+                                        .cash(new BigDecimal(1))
+                                        .unavailableClearing(new BigDecimal(1))
+                                        .receivable(new BigDecimal(1))
+                                        .blocked(new BigDecimal(1))
+                                        .unavailableStartDayClearingStartDay(new BigDecimal(1))
+                                        .cashStartDay(new BigDecimal(1))
+                                        .pockets(new BigDecimal(1))
+                                        .remittanceQuota(new BigDecimal(1))
+                                        .agreedRemittanceQuota(new BigDecimal(1))
+                                        .remittanceQuotaUsage(new BigDecimal(1))
+                                        .normalInterest(new BigDecimal(1))
+                                        .suspensionInterest(new BigDecimal(1))
+                                        .build()).
+                                build()).
+                        build())).
                 build();
     }
 
-    private RsTransaction getResponseTransacion(){
+    private RsTransaction getResponseTransacion() {
         return RsTransaction.builder().
                 data(List.of(RsDataTransaction.builder()
                         .flagMoreRecords(false)
@@ -164,14 +164,16 @@ public class BalancemovementsUseCaseTest {
 
 
     @Before
-    public void init(){
+    public void init() {
+        when(transactionGateway.getTransactionMoreMovements(getRequestTransaction(getRequestBalanceMovement(3).getData().get(0).getPagination().getKey()))).thenReturn(Mono.just(getResponseTransacion()));
+        when(transactionGateway.getTransaction(getRequestTransaction(getRequestBalanceMovement(1).getData().get(0).getPagination().getKey()))).thenReturn(Mono.just(getResponseTransacion()));
         when(balanceGateway.getBalance(getRequestBalance())).thenReturn(Mono.just(getResponsebalance()));
-        when(transactionGateway.getTransaction(getRequestTransaction())).thenReturn(Mono.just(getResponseTransacion()));
+
     }
 
     @Test
     public void getBalanceMovements() {
-        Mono<RsBalanceMovements> rsBalanceMovements =  balancemovementsUseCase.getBalanceMovements(getRequestBalanceMovement(1));
+        Mono<RsBalanceMovements> rsBalanceMovements = balancemovementsUseCase.getBalanceMovements(getRequestBalanceMovement(1));
         StepVerifier.create(rsBalanceMovements)
                 .assertNext(Assert::assertNotNull)
                 .verifyComplete();
@@ -179,7 +181,7 @@ public class BalancemovementsUseCaseTest {
 
     @Test
     public void getBalanceMovementsMoreMovements() {
-        Mono<RsBalanceMovements> rsTransactionMoreTransaction =  balancemovementsUseCase.getBalanceMovements(getRequestBalanceMovement(5));
+        Mono<RsBalanceMovements> rsTransactionMoreTransaction = balancemovementsUseCase.getBalanceMovements(getRequestBalanceMovement(3));
         StepVerifier.create(rsTransactionMoreTransaction)
                 .assertNext(Assert::assertNotNull)
                 .verifyComplete();

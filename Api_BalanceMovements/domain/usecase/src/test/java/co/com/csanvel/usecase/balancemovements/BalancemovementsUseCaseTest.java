@@ -35,7 +35,7 @@ public class BalancemovementsUseCaseTest {
     @Mock
     TransactionGateway transactionGateway;
 
-    private RqBalanceMovements getRequestBalanceMovement(){
+    private RqBalanceMovements getRequestBalanceMovement(int key){
         return RqBalanceMovements.builder()
                 .data(List.of(RqData.builder()
                     .account(RqAccount.builder()
@@ -53,7 +53,7 @@ public class BalancemovementsUseCaseTest {
                             .description("")
                             .build())
                     .pagination(RqPagination.builder()
-                            .key(1)
+                            .key(key)
                             .size(30)
                             .build())
                     .office(RqOffice.builder()
@@ -171,8 +171,16 @@ public class BalancemovementsUseCaseTest {
 
     @Test
     public void getBalanceMovements() {
-        Mono<RsBalanceMovements> rsBalanceMovements =  balancemovementsUseCase.getBalanceMovements(getRequestBalanceMovement());
+        Mono<RsBalanceMovements> rsBalanceMovements =  balancemovementsUseCase.getBalanceMovements(getRequestBalanceMovement(1));
         StepVerifier.create(rsBalanceMovements)
+                .assertNext(Assert::assertNotNull)
+                .verifyComplete();
+    }
+
+    @Test
+    public void getBalanceMovementsMoreMovements() {
+        Mono<RsBalanceMovements> rsTransactionMoreTransaction =  balancemovementsUseCase.getBalanceMovements(getRequestBalanceMovement(5));
+        StepVerifier.create(rsTransactionMoreTransaction)
                 .assertNext(Assert::assertNotNull)
                 .verifyComplete();
     }

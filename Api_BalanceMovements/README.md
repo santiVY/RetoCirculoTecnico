@@ -3,8 +3,8 @@ Microservicio desarrolado en el taller practico canales personas.
 
 ## Descripcion
  El microservicio de consulta saldos mas moviminetos es usado para obterner informacion financiera del 
- usuario respeto a una cuenta, nos da informacion como saldo disponible,
- saldo en bolsillos, saldo bloqueado, intereses, suspencion de interes entre otros, adicionalmente,
+ usuario en relación a una cuenta, nos da información como saldo disponible,
+ saldo en bolsillos, saldo bloqueado, intereses, suspención de interes entre otros, adicionalmente,
  retorna  una lista de movimientos del usuario de acuerdo a unos parametros tales como: rango de fechas, cantidad de movimientos,
  tipo de cuenta entre otros.
 
@@ -17,10 +17,10 @@ No aplica
 
 Se realiza consumo de dos endpoint expuesto en sandbox son:
 
-######Para la cosulta de movimientos de un cliente
+#####Para la cosulta de movimientos de un cliente
 POST: https://practicabanco.getsandbox.com:443/movements
 
-######Para la consulta de saldo de un ciente
+#####Para la consulta de saldo de un ciente
 POST: https://practicabanco.getsandbox.com:443/balances
 
 ## Definición de mensajeria

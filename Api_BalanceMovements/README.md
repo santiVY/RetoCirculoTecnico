@@ -93,6 +93,51 @@ Se nombra cada proyecto gradle y su función dentro de la arquitectura limpia:
 ### Diseño de estructura de paquetes
 ![](https://github.com/santiVY/RetoCirculoTecnico/blob/main/Api_BalanceMovements/SaldoMasMovimientos.png)
 
+
+
+##Configuracion para el despliegue en kubernets
+
+Prerequisitos
+
+Tener instalado 
+    docker
+    kubectl
+    minikube
+    
+
+
+Primero crear el jar
+ ./gradlew build 
+
+Para construir la imagen
+    docker build -t nombre_imagen
+
+Para aplicar el deployment
+    kubectl apply -f ./k8s/deploment.yaml
+
+Para aplicar la configuracion del servicio
+    kubectl apply -f ./k8s/service.yaml
+
+Para ver el log
+    kubectl logs nombre_pod nombre_container -f
+
+Para consultar todo en kubernet
+    kubectl get all 
+    
+Para iniciar minikube 
+    minikube start
+
+Para abrir el tunel entre el service y deployment
+    minukube tunnel
+
+Para ver tablero con la informacion de los despliegues
+    minikube dashboard 
+
+comando de minijube para cachear la imagen y que no la busque en docker hub
+    minikube cache add  imagen_que_quiero_cachear
+en el deployment debe estar en la definicion de containers 
+el atributo: imagePullPolicy: Never  #IfNotPresent / Always / Never
+
 <center>
 
 **Historial de Versiones**

@@ -17,9 +17,6 @@ public class RestConsumerTransaction implements TransactionGateway {
     @Value("${transaction.url}")
     private String url;
 
-    @Value("${transactionMoreMovement.url}")
-    private String urlMoreMovements;
-
     @Autowired
     private WebClient webClient;
 

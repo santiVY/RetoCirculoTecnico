@@ -5,9 +5,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
     implementation libs.api_validation
-    implementation libs.entry_point
-    implementation libs.spring_boot
     testImplementation libs.unit_tests
-    testImplementation libs.integration_test
+
 
 }

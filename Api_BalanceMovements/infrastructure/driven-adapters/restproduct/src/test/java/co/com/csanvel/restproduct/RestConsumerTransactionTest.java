@@ -1,6 +1,6 @@
 package co.com.csanvel.restproduct;
 
-import co.com.csanvel.model.balance.*;
+import co.com.csanvel.model.balance.RqAccount;
 import co.com.csanvel.model.transaction.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,7 +19,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.test.StepVerifier;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)

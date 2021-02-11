@@ -2,7 +2,6 @@ package co.com.csanvel;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.boot.SpringApplication;
 
 public class MainApplicationTest {
 

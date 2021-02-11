@@ -21,5 +21,3 @@ balance:
 transaction:
   url: /movements
 
-transactionMoreMovement:
-  url: /movements

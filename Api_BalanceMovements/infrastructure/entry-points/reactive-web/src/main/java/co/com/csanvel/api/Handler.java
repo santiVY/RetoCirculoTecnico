@@ -16,7 +16,6 @@ public class Handler {
 
     public Mono<ServerResponse> getBalanceMovements(ServerRequest serverRequest) {
         Mono<RsBalanceMovements> response = serverRequest.bodyToMono(RqBalanceMovements.class).flatMap(body -> balancemovementsUseCase.getBalanceMovements(body));
-
         return ServerResponse.ok()
                 .body(response, RsBalanceMovements.class);
     }

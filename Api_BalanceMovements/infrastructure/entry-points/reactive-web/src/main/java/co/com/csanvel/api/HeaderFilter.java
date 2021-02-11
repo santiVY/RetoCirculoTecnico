@@ -3,7 +3,6 @@ package co.com.csanvel.api;
 
 import co.com.csanvel.model.commons.ErrorHeader;
 import co.com.csanvel.model.commons.HeaderBM;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.HandlerFilterFunction;
 import org.springframework.web.reactive.function.server.HandlerFunction;

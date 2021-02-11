@@ -1,7 +1,6 @@
 package co.com.csanvel.api;
 
 import co.com.csanvel.model.commons.HeaderBM;
-import okhttp3.internal.http2.Header;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;

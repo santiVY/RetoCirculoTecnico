@@ -91,8 +91,7 @@ Se nombra cada proyecto gradle y su función dentro de la arquitectura limpia:
         restproduct
 
 ### Diseño de estructura de paquetes
-Api_BalanceMovements/SaldoMasMovimientos.png
-![](https://bancolombia-my.sharepoint.com/personal/sanvel_bancolombia_com_co/Documents/Archivos%20de%20chat%20de%20Microsoft%20Teams/SaldoMasMovimientos.png)
+![](https://github.com/santiVY/RetoCirculoTecnico/blob/main/Api_BalanceMovements/SaldoMasMovimientos.png)
 
 <center>
 

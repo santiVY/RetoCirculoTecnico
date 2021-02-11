@@ -99,5 +99,5 @@ Se nombra cada proyecto gradle y su función dentro de la arquitectura limpia:
 
 | Versión | Área                   | Participante | Observaciones   | Fecha      |
 | ------- | ---------------------- | ------------ | --------------- | ---------- |
-| 1.0   | Canales digitales personas | Brayan Durango Suarez - Jorge antonio Sierra - Santiago Velez yepes       | Versión Inicial | 07/05/2020 |
+| 1.0   | Canales digitales personas | Brayan Durango Suarez - Jorge antonio Sierra - Santiago Velez yepes       | Versión Inicial | 11/02/2021 |
 </center>

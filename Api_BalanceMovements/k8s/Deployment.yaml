@@ -18,8 +18,8 @@ spec:
     spec:
       containers:
         - name: balance-container
-          image: csanvel/api-balance:1.0
-          imagePullPolicy: Never  # IfNotPresent / Always / Never
+          image: santyvy/api-balance
+          #imagePullPolicy: Never  # IfNotPresent / Always / Never
           ports:
             - name: balance
               containerPort: 8081
